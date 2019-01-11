@@ -46,6 +46,7 @@ public:
     T getState(){
         return this->state;
     }
+
 };
 
 

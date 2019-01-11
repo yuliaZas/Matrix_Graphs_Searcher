@@ -28,8 +28,18 @@ std::vector<State<pair<int,int>>> matrixMaze::getAllPossibleStates(State<pair<in
     // for readability place line and row of s in i and j.
     int i = s.getState().first;
     int j = s.getState().second;
-    
-
-
+    // check if the closest cells are not walls and if not add then to the possible options
+    if (this->mazeCost[i+1][j] != std::numeric_limits<int>::infinity() && i+1 < SIZE){
+        bros.insert(bros.end(),this->maze[i+1][j]);
+    }
+    if (this->mazeCost[i-1][j] != std::numeric_limits<int>::infinity() && i-1 > 0){
+        bros.insert(bros.end(),this->maze[i-1][j]);
+    }
+    if (this->mazeCost[i][j+1] != std::numeric_limits<int>::infinity() && j+1 < SIZE){
+        bros.insert(bros.end(),this->maze[i][j+1]);
+    }
+    if (this->mazeCost[i][j-1] != std::numeric_limits<int>::infinity() && j-1 > 0){
+        bros.insert(bros.end(),this->maze[i][j-1]);
+    }
     return bros;
 }
