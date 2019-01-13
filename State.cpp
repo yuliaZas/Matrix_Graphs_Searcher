@@ -15,6 +15,7 @@ bool State<T>::equals(State s) {
 
 
 
+
 template<>
 bool State<int>::equals(State<int> s) {
 

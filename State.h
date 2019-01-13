@@ -12,35 +12,32 @@ class State {
 private:
     T state;
     double cost;
-    double priority;
     State<T> *prevState;
-    //void setPriority(double prevPriority);
 
 public:
-    //State(T state, double cost);
-    //void setPrev(State prev);
+//    bool operator <(const State<T>  &s)const {
+//        return this->cost > s->cost;
+//    }
     bool equals(State s);
-    //double getPriority();
     State<T>(){}
 
     State<T>(T state, double cost) {
         this->state = state;
         this->cost = cost;
-        this->priority =std::numeric_limits<double>::infinity();
         this->prevState = NULL;
     }
 
     void setPrev(State prev) {
         this->prevState = &prev;
-        State::setPriority(prev.priority);
+        this->cost = this->cost + prev.cost;
 
     }
-    double getPriority() {
-        return this->priority;
+    double getCost() {
+        return this->cost;
     }
 
-    void setPriority(double prevPriority) {
-        this->priority = this->cost + prevPriority;
+    void setCost(double Cost) {
+        this->cost = Cost;
     }
 
     T getState(){

@@ -7,12 +7,12 @@
 
 #include "ISearchable.h"
 #include "solution.h"
-#include <list>
+#include <vector>
 
 template <class T>
 class ISearcher {
 public:
-    solution<std::list<T>> search(ISearchable<T> searchable);
+    solution<std::vector<T>> search(ISearchable<T> searchable);
     int getNumberOfNodes();
 
 };
