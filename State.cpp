@@ -31,3 +31,8 @@ bool State<std::string>::equals(State<std::string> s) {
 
     return this->state == s.state;
 }
+template<>
+bool State<std::pair<int,int>>::equals(State<std::pair<int,int>> s) {
+
+    return (this->state.first == s.state.first)&&(this->state.second == s.state.second)  ;
+}
