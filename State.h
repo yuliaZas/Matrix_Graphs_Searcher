@@ -32,7 +32,7 @@ public:
         this->cost = this->cost + prev.cost;
 
     }
-    double getCost() {
+    double getCost() const {
         return this->cost;
     }
 
@@ -46,7 +46,13 @@ public:
 
 };
 
-
+template<class T>
+class CMPstates{
+public:
+    bool operator()(const State<T> &s1,const State<T> &s2 )const{
+        return s1.getCost() > s2.getCost();
+    }
+};
 
 
 #endif //FLIGHT_SIMULATOR_STATE_H
