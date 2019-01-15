@@ -18,8 +18,11 @@ class matrixMaze:
 private:
     State<pair<int,int>> maze[SIZE][SIZE];
     int mazeCost[SIZE][SIZE];
+    State<pair<int,int>> initialState;
+    State<pair<int,int>> goalState;
 public:
     matrixMaze(int Cost[SIZE][SIZE]);
+    matrixMaze(int Cost[SIZE][SIZE],State<pair<int,int>> initialState, State<pair<int,int>> goalState);
     State<pair<int,int>> getInitialState();
     State<pair<int,int>> getGoalState();
     std::vector<State<pair<int,int>>> getAllPossibleStates(State<pair<int,int>> s);

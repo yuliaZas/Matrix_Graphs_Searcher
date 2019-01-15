@@ -12,14 +12,26 @@ matrixMaze::matrixMaze(int Cost[SIZE][SIZE]){
             this->maze[i][j] = s;
         }
     }
+    this->initialState = this->maze[0][0];
+    this->goalState = this->maze[SIZE - 1][SIZE - 1];
 }
-
+matrixMaze::matrixMaze(int Cost[SIZE][SIZE], State <pair<int, int>> initialState, State <pair<int, int>> goalState) {
+    for (int i = 0;i < SIZE;i++){
+        for (int j = 0;j < SIZE;j++){
+            this->mazeCost[i][j] = Cost[i][j];
+            State<pair<int,int>> s(pair<int,int>(i,j), this->mazeCost[i][j]);
+            this->maze[i][j] = s;
+        }
+    }
+    this->initialState = initialState;
+    this->goalState = goalState;
+}
 State<pair<int,int>> matrixMaze::getInitialState() {
-    return this->maze[0][0];
+    return this->initialState;
 }
 
 State<pair<int,int>> matrixMaze::getGoalState() {
-    return this->maze[SIZE - 1][SIZE - 1];
+    return this->goalState;
 }
 
 std::vector<State<pair<int,int>>> matrixMaze::getAllPossibleStates(State<pair<int,int>> s) {
@@ -43,3 +55,5 @@ std::vector<State<pair<int,int>>> matrixMaze::getAllPossibleStates(State<pair<in
     }
     return bros;
 }
+
+

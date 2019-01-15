@@ -12,7 +12,7 @@
 template <class T>
 class ISearcher {
 public:
-    solution<std::vector<T>> search(ISearchable<T> searchable);
+    solution<T> search(ISearchable<T> searchable);
     int getNumberOfNodes();
 
 };
