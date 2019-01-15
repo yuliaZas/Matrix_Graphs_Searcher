@@ -10,8 +10,12 @@
 
 using namespace std;
 
+/*Defines a Client Handler object*/
 class ClientHandler {
 public:
+    /**
+     * Writes server's output to output stream, after getting input from the server through the input stream.
+     */
     virtual void handleClient(int) = 0;
 };
 
