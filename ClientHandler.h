@@ -12,7 +12,7 @@ using namespace std;
 
 class ClientHandler {
 public:
-    virtual void handleClient(int, int) = 0;
+    virtual void handleClient(int) = 0;
 };
 
 #endif //UNTITLED2_CLIENTHANDLER_H

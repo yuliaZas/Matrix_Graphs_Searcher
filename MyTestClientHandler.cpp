@@ -4,6 +4,6 @@
 
 #include "MyTestClientHandler.h"
 
-void MyTestClientHandler::handleClient(int stream1, int stream2) {
+void MyTestClientHandler::handleClient(int stream1) {
 
 }
