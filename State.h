@@ -43,7 +43,9 @@ public:
     T getState(){
         return this->state;
     }
-
+    State<T> getPrev(){
+        return *this->prevState;
+    }
 };
 
 template<class T>

@@ -11,7 +11,7 @@
 #include <string>
 #include <limits>
 // maze size (n)
-const int SIZE = 10;
+const int SIZE = 3;
 using namespace std;
 class matrixMaze:
         public ISearchable<pair<int,int>> {
@@ -26,7 +26,8 @@ public:
     State<pair<int,int>> getInitialState();
     State<pair<int,int>> getGoalState();
     std::vector<State<pair<int,int>>> getAllPossibleStates(State<pair<int,int>> s);
-
+    std::vector<State<std::pair<int, int>>> getFinalPath();
+    int getFinalPathCost();
 };
 
 

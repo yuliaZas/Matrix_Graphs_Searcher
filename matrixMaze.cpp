@@ -56,4 +56,22 @@ std::vector<State<pair<int,int>>> matrixMaze::getAllPossibleStates(State<pair<in
     return bros;
 }
 
+std::vector<State<std::pair<int, int>>>matrixMaze:: getFinalPath() {
+    // initialize a new vector to hold the final path
+    std::vector<State<std::pair<int, int>>> path;
+    // initialize the state with the last state
+    State<std::pair<int, int>> currState = this->getGoalState();
+    // go thought all the states in the path
+    while(currState.getState() != this->getInitialState().getState()){
+        // insert the state to the vector
+        path.insert(path.begin(), currState);
+        currState = currState.getPrev();
+    }
+    return path;
+}
+
+
+int matrixMaze::getFinalPathCost() {
+    return this->getGoalState().getCost();
+}
 
