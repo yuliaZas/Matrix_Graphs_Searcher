@@ -11,25 +11,24 @@
 #include <string>
 #include <limits>
 #include <vector>
-// maze size (n)
-const int SIZE = 3;
+
 using namespace std;
 class matrixMaze:
         public ISearchable<pair<int,int>> {
 private:
-    vector<vector<State<pair<int,int>>>> maze;
+    vector<vector<State<pair<int,int>>*>> maze;
     //int mazeCost[SIZE][SIZE];
-    State<pair<int,int>> initialState;
-    State<pair<int,int>> goalState;
+    State<pair<int,int>>* initialState;
+    State<pair<int,int>>* goalState;
 public:
     matrixMaze(vector<vector<int>> Cost);
-    matrixMaze(vector<vector<int>> Cost,State<pair<int,int>> initialState, State<pair<int,int>> goalState);
-    State<pair<int,int>> getInitialState();
-    State<pair<int,int>> getGoalState();
-    std::vector<State<pair<int,int>>> getAllPossibleStates(State<pair<int,int>> s);
-    std::vector<State<std::pair<int, int>>> getFinalPath();
+    matrixMaze(vector<vector<int>> Cost,State<pair<int,int>>* initialState, State<pair<int,int>>* goalState);
+    State<pair<int,int>>* getInitialState();
+    State<pair<int,int>>* getGoalState();
+    std::vector<State<pair<int,int>>*> getAllPossibleStates(State<pair<int,int>>* s);
+    std::vector<State<std::pair<int, int>>*> getFinalPath();
     int getFinalPathCost();
-    bool pathIsBetter(State<std::pair<int, int>> currentState, State<std::pair<int, int>> maybeNewPrev);
+    bool pathIsBetter(State<std::pair<int, int>>* currentState, State<std::pair<int, int>>* maybeNewPrev);
 };
 
 
