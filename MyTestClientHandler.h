@@ -11,7 +11,7 @@
 
 class MyTestClientHandler : public ClientHandler {
 private:
-    Solver* solver;
+    //Solver* solver;
     CacheManager* mc;
 
 public:
