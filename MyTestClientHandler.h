@@ -14,7 +14,7 @@ private:
     CacheManager mc;
 
 public:
-    void handleClient(int stream1, int stream2) override;
+    void handleClient(int stream1) override;
 };
 
 
