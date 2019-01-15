@@ -10,12 +10,14 @@
 
 template <class T>
 class ISearchable {
+
+public:
     virtual State<T> getInitialState() = 0;
     virtual State<T> getGoalState() = 0;
     virtual std::vector<State<T>> getAllPossibleStates(State<T> s) = 0;
-    std::vector<State<T>> getFinalPath();
-    int getFinalPathCost();
-    bool pathIsBetter(State<T> currentState, State<T> maybeNewPrev);
+    virtual std::vector<State<T>> getFinalPath() = 0;
+    virtual int getFinalPathCost() = 0;
+    virtual bool pathIsBetter(State<T> currentState, State<T> maybeNewPrev)= 0;
 };
 
 

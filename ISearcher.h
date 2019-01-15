@@ -12,8 +12,8 @@
 template <class T>
 class ISearcher {
 public:
-    solution<T> search(ISearchable<T> searchable);
-    int getNumberOfNodes();
+    virtual std::vector<State<T>> search(ISearchable<T>* searchable) = 0;
+    virtual int getNumberOfNodes() = 0;
 
 };
 
