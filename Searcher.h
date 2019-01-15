@@ -14,16 +14,13 @@
 using namespace std;
 
 template <class T>
-class Searcher : public ISearcher<T>{
-public:
-virtual solution<T> search(ISearchable<T> searchable);
-void setPriority(priority_queue<State<T>, vector<State<T>>, CMPstates<T>> *pq, double newPriorty, State<T> state);
-bool isInQueue(priority_queue<State<T>, vector<State<T>> , CMPstates<T>> *pq, State<T> state);
-State<T> pop(priority_queue<State<T>, vector<State<T>> , CMPstates<T>> *pq, int* numberOfNodes);
-};
+class Searcher : public ISearcher<T> {
 
-template<class T>
-void Searcher<T>::setPriority(priority_queue<State<T>, vector<State<T>>, CMPstates<T>> *pq, double newPriorty,
+public:
+
+virtual std::vector<State<T>> search(ISearchable<T>* searchable)=0;
+
+virtual void setPriority(priority_queue<State<T>, vector<State<T>>, CMPstates<T>> *pq, double newPriorty,
                               State<T> state) {
     priority_queue<State<T>, vector<State<T>>, CMPstates<T>> tempQueue;
     State<T> tempState;
@@ -31,15 +28,14 @@ void Searcher<T>::setPriority(priority_queue<State<T>, vector<State<T>>, CMPstat
         tempState = pq->top();
         pq->pop();
         if (tempState.equals(state)){
-            tempState.setCost(newPriorty);
+            tempState.setPathCost(newPriorty);
         }
         tempQueue.push(tempState);
     }
     pq->swap(tempQueue);
 }
 
-template<class T>
-bool Searcher<T>::isInQueue(priority_queue<State<T>, vector<State<T>>, CMPstates<T>> *pq, State<T> state) {
+virtual bool isInQueue(priority_queue<State<T>, vector<State<T>>, CMPstates<T>> *pq, State<T> state) {
     bool isInQueue = false;
     priority_queue<State<T>, vector<State<T>>, CMPstates<T>> tempQueue;
     State<T> tempState;
@@ -56,13 +52,13 @@ bool Searcher<T>::isInQueue(priority_queue<State<T>, vector<State<T>>, CMPstates
 
 }
 
-template<class T>
-State<T> Searcher<T>::pop(priority_queue<State<T>, vector<State<T>>, CMPstates<T>> *pq, int *numberOfNodes) {
+virtual State<T> pop(priority_queue<State<T>, vector<State<T>>, CMPstates<T>> *pq, int *numberOfNodes) {
     State<T> topState = pq->top();
     pq->pop();
-    *numberOfNodes++;
+    ++(*numberOfNodes);
     return topState;
 }
 
+};
 
 #endif //MILE_STONE2_SEARCHER_H

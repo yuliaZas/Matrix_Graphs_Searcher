@@ -10,23 +10,26 @@
 #include "State.h"
 #include <string>
 #include <limits>
+#include <vector>
 // maze size (n)
-const int SIZE = 10;
+const int SIZE = 3;
 using namespace std;
 class matrixMaze:
         public ISearchable<pair<int,int>> {
 private:
-    State<pair<int,int>> maze[SIZE][SIZE];
-    int mazeCost[SIZE][SIZE];
+    vector<vector<State<pair<int,int>>>> maze;
+    //int mazeCost[SIZE][SIZE];
     State<pair<int,int>> initialState;
     State<pair<int,int>> goalState;
 public:
-    matrixMaze(int Cost[SIZE][SIZE]);
-    matrixMaze(int Cost[SIZE][SIZE],State<pair<int,int>> initialState, State<pair<int,int>> goalState);
+    matrixMaze(vector<vector<int>> Cost);
+    matrixMaze(vector<vector<int>> Cost,State<pair<int,int>> initialState, State<pair<int,int>> goalState);
     State<pair<int,int>> getInitialState();
     State<pair<int,int>> getGoalState();
     std::vector<State<pair<int,int>>> getAllPossibleStates(State<pair<int,int>> s);
-
+    std::vector<State<std::pair<int, int>>> getFinalPath();
+    int getFinalPathCost();
+    bool pathIsBetter(State<std::pair<int, int>> currentState, State<std::pair<int, int>> maybeNewPrev);
 };
 
 

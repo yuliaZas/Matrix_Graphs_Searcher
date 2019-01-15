@@ -12,6 +12,7 @@ class State {
 private:
     T state;
     double cost;
+    double pathCost;
     State<T> *prevState;
 
 public:
@@ -27,9 +28,8 @@ public:
         this->prevState = NULL;
     }
 
-    void setPrev(State prev) {
-        this->prevState = &prev;
-        this->cost = this->cost + prev.cost;
+    void setPrev(State* prev) {
+        this->prevState = prev;
 
     }
     double getCost() const {
@@ -43,7 +43,15 @@ public:
     T getState(){
         return this->state;
     }
-
+    State<T> getPrev(){
+        return *this->prevState;
+    }
+    void setPathCost(double newPathCost){
+        this->pathCost = newPathCost;
+    }
+    double getPathCost(){
+        return this->pathCost;
+    }
 };
 
 template<class T>
