@@ -18,31 +18,31 @@ class Searcher : public ISearcher<T> {
 
 public:
 
-virtual std::vector<State<T>> search(ISearchable<T>* searchable)=0;
+virtual std::vector<State<T>*> search(ISearchable<T>* searchable)=0;
 
-virtual void setPriority(priority_queue<State<T>, vector<State<T>>, CMPstates<T>> *pq, double newPriorty,
-                              State<T> state) {
-    priority_queue<State<T>, vector<State<T>>, CMPstates<T>> tempQueue;
-    State<T> tempState;
+virtual void setPriority(priority_queue<State<T>*, vector<State<T>*>, CMPstates<T>> *pq, double newPriorty,
+                              State<T>* state) {
+    priority_queue<State<T>*, vector<State<T>*>, CMPstates<T>> tempQueue;
+    State<T>* tempState;
     while(!pq->empty()){
         tempState = pq->top();
         pq->pop();
-        if (tempState.equals(state)){
-            tempState.setPathCost(newPriorty);
+        if (tempState->equals(*state)){
+            tempState->setPathCost(newPriorty);
         }
         tempQueue.push(tempState);
     }
     pq->swap(tempQueue);
 }
 
-virtual bool isInQueue(priority_queue<State<T>, vector<State<T>>, CMPstates<T>> *pq, State<T> state) {
+virtual bool isInQueue(priority_queue<State<T>*, vector<State<T>*>, CMPstates<T>> *pq, State<T>* state) {
     bool isInQueue = false;
-    priority_queue<State<T>, vector<State<T>>, CMPstates<T>> tempQueue;
-    State<T> tempState;
+    priority_queue<State<T>*, vector<State<T>*>, CMPstates<T>> tempQueue;
+    State<T>* tempState;
     while(!pq->empty()){
         tempState = pq->top();
         pq->pop();
-        if (tempState.equals(state)){
+        if (tempState->equals(*state)){
             isInQueue = true;
         }
         tempQueue.push(tempState);
@@ -52,8 +52,8 @@ virtual bool isInQueue(priority_queue<State<T>, vector<State<T>>, CMPstates<T>> 
 
 }
 
-virtual State<T> pop(priority_queue<State<T>, vector<State<T>>, CMPstates<T>> *pq, int *numberOfNodes) {
-    State<T> topState = pq->top();
+virtual State<T>* pop(priority_queue<State<T>*, vector<State<T>*>, CMPstates<T>> *pq, int *numberOfNodes) {
+    State<T>* topState = pq->top();
     pq->pop();
     ++(*numberOfNodes);
     return topState;

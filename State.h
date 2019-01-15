@@ -43,8 +43,8 @@ public:
     T getState(){
         return this->state;
     }
-    State<T> getPrev(){
-        return *this->prevState;
+    State<T>* getPrev(){
+        return this->prevState;
     }
     void setPathCost(double newPathCost){
         this->pathCost = newPathCost;
@@ -57,8 +57,8 @@ public:
 template<class T>
 class CMPstates{
 public:
-    bool operator()(const State<T> &s1,const State<T> &s2 )const{
-        return s1.getCost() > s2.getCost();
+    bool operator()(const State<T>* s1,const State<T>* s2 )const{
+        return s1->getCost() > s2->getCost();
     }
 };
 
