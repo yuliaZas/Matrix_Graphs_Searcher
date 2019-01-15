@@ -4,9 +4,10 @@
 
 #include "MatrixInterpreter.h"
 
-int** MatrixInterpreter::matrixInter(string sMat) {
-    int** matrix;
-    vector<vector<int>> matrixRows;
+vector<vector<int>> MatrixInterpreter::matrixInter(string sMat) {
+
+
+    vector<vector<int>> matrix;
 
     stringstream linesP;
     stringstream singleLine;
@@ -26,18 +27,8 @@ int** MatrixInterpreter::matrixInter(string sMat) {
                 parsedRow.push_back(stoi(tempV));
             }
             singleLine.clear();
-            matrixRows.push_back(parsedRow);
+            matrix.push_back(parsedRow);
         }
-    }
-
-    int i = 0, j = 0;
-    for (auto it1 = matrixRows.begin(); it1 != matrixRows.end() ; ++it1) {
-        for (auto it2 = matrixRows.begin(); it2 != matrixRows.end() ; ++it2) {
-            matrix[i][j] = matrixRows.at(i).at(j);
-            ++j;
-        }
-        ++i;
-        j = 0;
     }
 
     return matrix;

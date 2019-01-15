@@ -21,7 +21,7 @@ public:
      * @param sMat the matrix to interpreter
      * @return the math matrix
      */
-    int** matrixInter(string sMat);
+    vector<vector<int>> matrixInter(string sMat);
 };
 
 
