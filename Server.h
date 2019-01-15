@@ -5,11 +5,20 @@
 #ifndef UNTITLED2_SERVER_H
 #define UNTITLED2_SERVER_H
 
-#include "MyTestClientHandler.h"
+#include "ClientHandler.h"
 
+/*In charge to open the server on the given port and close it.*/
 class Server {
 public:
-    virtual void open(int port, MyTestClientHandler) = 0;
+    /**
+     * In charge to open the server on the given port.
+     * @param port the port
+     * @param handler the handler to use
+     */
+    virtual void open(int port, ClientHandler* handler) = 0;
+    /**
+     * Close the server
+     */
     virtual void close() = 0;
 };
 
