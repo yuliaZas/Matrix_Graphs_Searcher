@@ -4,7 +4,7 @@
 
 #include "MyClientHandler.h"
 
-MyClientHandler::MyClientHandler(Solver<ISearchable<std::pair<int, int>> *, State<std::pair<int, int>> *> *solver,
+MyClientHandler::MyClientHandler(Solver<ISearchable<pair<int, int>>*,vector<State<pair<int, int>>*>> *solver,
                                  CacheManager *cacheManager) {
 
     this->cacheManager = cacheManager;

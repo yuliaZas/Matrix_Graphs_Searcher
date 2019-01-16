@@ -36,7 +36,7 @@ public:
      * @param cacheManager the cache manager
      */
     MyClientHandler
-            (Solver<ISearchable<std::pair<int, int>> *,State<std::pair<int, int>> *> *solver,
+            (Solver<ISearchable<pair<int, int>>*,vector<State<pair<int, int>>*>> *solver,
              CacheManager *cacheManager);
     /*override*/
     void handleClient(int stream1) override;
