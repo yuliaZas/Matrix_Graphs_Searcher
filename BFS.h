@@ -2,22 +2,21 @@
 // Created by miri on 16/01/19.
 //
 
-#ifndef MILE_STONE2_DFS_H
-#define MILE_STONE2_DFS_H
+#ifndef MILE_STONE2_BFS_H
+#define MILE_STONE2_BFS_H
 
 #include "Searcher.h"
-
 template <class T>
-class DFS :public Searcher<T>{
+class BFS: public Searcher<T> {
 private:
 
-    stack<State<T>*> open;
-    stack<State<T>*> close;
+    queue<State<T>*> open;
+    queue<State<T>*> close;
     int numberOfNodes;
 
     int getFinalPathCost(ISearchable<T>* searchable);
 public:
-    DFS(){
+    BFS(){
         numberOfNodes = 0;
     }
     int getNumberOfNodes(){
@@ -34,19 +33,19 @@ public:
                 return searchable->getFinalPath();
             }
 
-                moves = searchable->getAllPossibleStates(currentState);
-                for(State<T>* move:moves){
-                    if(!this->isInQueue(&close, move)&& !this->isInQueue(&open, move)){
-                        move->setPrev(currentState);
-                        move->setPathCost(currentState->getPathCost() + move->getCost());
-                        open.push(move);
-                    }
-
+            moves = searchable->getAllPossibleStates(currentState);
+            for(State<T>* move:moves){
+                if(!this->isInQueue(&close, move) && !this->isInQueue(&open, move)){
+                    move->setPrev(currentState);
+                    move->setPathCost(currentState->getPathCost() + move->getCost());
+                    open.push(move);
                 }
+
+            }
 
         }
     }
 };
 
 
-#endif //MILE_STONE2_DFS_H
+#endif //MILE_STONE2_BFS_H
