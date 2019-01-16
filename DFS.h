@@ -6,11 +6,13 @@
 #define MILE_STONE2_DFS_H
 
 #include "Searcher.h"
+
 template <class T>
 class DFS :public Searcher<T>{
 private:
-    priority_queue<State<T>*, vector<State<T>*>, CMPstates<T>> open;
-    priority_queue<State<T>*, vector<State<T>*>, CMPstates<T>> close;
+
+    stack<State<T>*> open;
+    stack<State<T>*> close;
     int numberOfNodes;
 
     int getFinalPathCost(ISearchable<T>* searchable);
