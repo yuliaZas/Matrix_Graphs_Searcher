@@ -22,7 +22,7 @@ private:
     State<pair<int,int>>* goalState;
 public:
     matrixMaze(vector<vector<int>> Cost);
-    matrixMaze(vector<vector<int>> Cost,State<pair<int,int>>* initialState, State<pair<int,int>>* goalState);
+    matrixMaze(vector<vector<int>> Cost,State<pair<int,int>>* _initialState, State<pair<int,int>>* _goalState);
     State<pair<int,int>>* getInitialState();
     State<pair<int,int>>* getGoalState();
     std::vector<State<pair<int,int>>*> getAllPossibleStates(State<pair<int,int>>* s);
