@@ -6,7 +6,7 @@
 #define UNTITLED2_SOLVER_H
 
 /**
- * Define's a Solver.
+ * Defines a Solver.
  * @tparam Problem The problem.
  * @tparam Solution The solution.
  */
@@ -21,7 +21,7 @@ public:
     virtual Solution solveProblem(Problem) = 0;
 
     /**
-     * Destructor.
+     * DTOR.
      */
     virtual ~Solver(){};
 };

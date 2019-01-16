@@ -6,7 +6,6 @@
 #define MILE_STONE2_ISEARCHER_H
 
 #include "ISearchable.h"
-#include "solution.h"
 #include <vector>
 
 template <class T>
