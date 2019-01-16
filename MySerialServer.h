@@ -8,7 +8,7 @@
 #include "Server.h"
 #include "ClientHandler.h"
 
-class MySerialServer : public Server{
+class MySerialServer : public server_side::Server{
 public:
     void open(int i, ClientHandler* handler) override;
 

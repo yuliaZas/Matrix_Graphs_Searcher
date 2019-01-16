@@ -4,6 +4,7 @@
 
 
 #include "MyParallelServer.h"
+#include <pthread.h>
 
 void MyParallelServer::open(int port, ClientHandler *clientHandler) {
 

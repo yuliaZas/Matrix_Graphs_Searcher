@@ -7,7 +7,6 @@
 
 
 #include "ISearchable.h"
-#include "solution.h"
 #include "ISearcher.h"
 #include <queue>
 
