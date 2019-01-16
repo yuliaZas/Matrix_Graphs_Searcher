@@ -23,7 +23,7 @@ matrixMaze::matrixMaze(vector<vector<int>> Cost){
     this->initialState = this->maze[0][0];
     this->goalState = this->maze[this->maze.size()-1][this->maze.size()-1];
 }
-matrixMaze::matrixMaze(vector<vector<int>> Cost, State <pair<int, int>>* initialState, State <pair<int, int>>* goalState) {
+matrixMaze::matrixMaze(vector<vector<int>> Cost, State <pair<int, int>>* _initialState, State <pair<int, int>>* _goalState) {
     this->maze = vector<vector<State<pair<int, int>>*>>();
     for (int i = 0;i < Cost.size();i++){
         vector<State<pair<int, int>>*> vector1;
@@ -39,8 +39,9 @@ matrixMaze::matrixMaze(vector<vector<int>> Cost, State <pair<int, int>>* initial
         }
         this->maze.insert(this->maze.end(), vector1);
     }
-    this->initialState = initialState;
-    this->goalState = goalState;
+    this->initialState = this->maze[_initialState->getState().first][_initialState->getState().second];
+
+    this->goalState = this->maze[_goalState->getState().first][_goalState->getState().second];
 }
 State<pair<int,int>>* matrixMaze::getInitialState() {
     return this->initialState;
