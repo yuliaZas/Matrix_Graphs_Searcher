@@ -32,6 +32,7 @@ public:
                 // if this state is the goal state, finish
                 if (s->equals(*searchable->getGoalState())){
                     s->setPrev(currentState);
+                    s->setPathCost(currentState->getPathCost() + s->getCost());
                     return searchable->getFinalPath();
                 }else{
                     // calculate the cost that could be
