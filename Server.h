@@ -8,6 +8,7 @@
 #include "ClientHandler.h"
 
 /*In charge to open the server on the given port and close it.*/
+namespace server_side {
 class Server {
 public:
     /**
@@ -20,7 +21,7 @@ public:
      * Close the server
      */
     virtual void close() = 0;
-};
-
+    };
+}
 
 #endif //UNTITLED2_SERVER_H
