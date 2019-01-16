@@ -9,14 +9,18 @@
 #include <string.h>
 #include <string>
 #include <vector>
+#include <netinet/in.h>
 #include <thread>
 #include <sstream>
+#include <mutex>
 #include "Server.h"
 #include "ClientHandler.h"
-//#include "ArgumentsForOpenServer.h"
+#include "DataForServer.h"
 
 using namespace server_side;
 using namespace std;
+static mutex mutex;
+
 
 class MyParallelServer : public Server {
 private:
@@ -31,10 +35,17 @@ public:
     * @param clientHandler The client handler to use for each client.
     */
     void open(int port, ClientHandler *clientHandler) override;
+
+    /**
+    * Joining all the threads we opened by order and deleting allocated objects.
+    */
     void close() override;
 
-private:
-    static void* callHandler(void*);
+    /**
+    * Wrap's the call to client handler.
+    * @param args The arguments needed.
+     */
+    static void* handleCaller(void*);
 };
 
 #endif //UNTITLED2_MYPARALLELSERVER_H

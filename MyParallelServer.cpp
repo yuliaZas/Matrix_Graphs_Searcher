@@ -2,6 +2,7 @@
 // Created by Yulia.
 //
 
+
 #include "MyParallelServer.h"
 
 void MyParallelServer::open(int port, ClientHandler *clientHandler) {
@@ -11,41 +12,30 @@ void MyParallelServer::open(int port, ClientHandler *clientHandler) {
 
     bool first_client_served = false;
 
-    /**
-     * First call to socket() function:
-     * AF_INET     - IPv4 (Domain protocol)
-     * SOCK_STREAM - TCP (Communication type)
-     * 0           - IP (Protocol)
-     */
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
-    /* Initialize and set thread as joinable. */
     pthread_attr_t attr;
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 
-    /* Check of creation succeeded*/
     if (sockfd < 0) {
-        perror("Error opening socket.");
+        perror("Error occurred while opening the socket.");
         exit(1);
     }
 
-    /* Initialize socket structure */
     bzero((char *) &serv_addr, sizeof(serv_addr));
 
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = INADDR_ANY;
     serv_addr.sin_port = htons((uint16_t)((size_t)port));
 
-    /* Now bind the host address using bind() call.*/
     if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
-        perror("Failed to bind server connection.");
+        perror("Failed to make bind.");
         exit(1);
     }
 
-    bool time_out = false;
-    /* Now start listening for the clients. */
-    while (!time_out) {
+    bool timeOut = false;
+    while (timeOut == false) {
 
         if (first_client_served) {
             timeval timeout;
@@ -58,50 +48,37 @@ void MyParallelServer::open(int port, ClientHandler *clientHandler) {
         listen(sockfd,5);
         clilen = sizeof(cli_addr);
 
-        /* Accept actual connection from the client */
         newsockfd = accept(sockfd, (struct sockaddr *)&cli_addr, (socklen_t*)&clilen);
 
         first_client_served = true;
 
         if (newsockfd < 0) {
-            perror("timeout!");
-            time_out = true;
+            perror("timeout occurred");
+            timeOut = true;
         } else {
-
-            auto args = new ArgumentsForOpenServer(port, clientHandler, newsockfd);
+            auto data = new DataForServer(port, clientHandler, newsockfd);
             pthread_t* pthread = new pthread_t;
             this->threads.push_back(pthread);
-            pthread_create(pthread, &attr, MyParallelServer::callHandler ,(void*)(args));
+            pthread_create(pthread, &attr, this->handleCaller ,(void*)(data));
         }
     }
-    /* Free attribute */
+
     pthread_attr_destroy(&attr);
-    stop();
+    close();
 }
 
-/**
- * Joining all the threads we opened by order and deleting allocated objects.
- */
-void MyParallelServer::stop() {
+void MyParallelServer::close() {
 
     void* status;
-    auto iterator = this->threads.begin();
-    for (; iterator != this->threads.end(); ++iterator) {
-        pthread_join((*(*iterator)), &status);
-        free((*iterator));
+    for (auto iter = this->threads.begin(); iter != this->threads.end(); ++iter) {
+        pthread_join((*(*iter)), &status);
+        free((*iter));
     }
 
     this->threads.clear();
 }
 
-/**
- * Wrap's the call to client handler.
- * @param args The arguments needed.
- * @return
- */
-void *MyParallelServer::callHandler(void* args) {
-
-    /* Call client handler. */
-    auto * arguments = (ArgumentsForOpenServer*) args;
-    arguments->getClientHandler()->handleClient(arguments->getSocketID());
+void *MyParallelServer::handleCaller(void* args) {
+    auto * arguments = (DataForServer*) args;
+    arguments->getClientHandle()->handleClient(arguments->getSocket());
 }
