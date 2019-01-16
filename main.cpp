@@ -9,6 +9,7 @@
 #include "MatrixInterpreter.h"
 #include "Astar.h"
 #include "BestFS.h"
+#include "DFS.h"
 using namespace std;
 int main(){
     MatrixInterpreter mi;
@@ -32,9 +33,11 @@ int main(){
     pq.push(s2);
      */
     matrixMaze maze(mat);
-    Astar<pair<int,int>> star;
-    star.search(&maze);
-    BestFS<pair<int, int>> best;
-    best.search(&maze);
+//    Astar<pair<int,int>> star;
+//    star.search(&maze);
+//    BestFS<pair<int, int>> best;
+//    best.search(&maze);
+    DFS<pair<int,int>> dfs;
+    dfs.search(&maze);
     return  0;
 }
