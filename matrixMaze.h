@@ -29,6 +29,7 @@ public:
     std::vector<State<std::pair<int, int>>*> getFinalPath();
     int getFinalPathCost();
     bool pathIsBetter(State<std::pair<int, int>>* currentState, State<std::pair<int, int>>* maybeNewPrev);
+    int huristics(State<pair<int,int>>* currentState, State<pair<int,int>>* goalState);
 };
 
 

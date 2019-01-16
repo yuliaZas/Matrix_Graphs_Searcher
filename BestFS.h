@@ -64,13 +64,13 @@ virtual std::vector<State<T>*> search(ISearchable<T>* searchable) {
             }
         }
     }
-    // return a solution which contains the final path
+
     return searchable->getFinalPath();
 }
 
-vector<T> getFinalPath(ISearchable<T>* searchable) {
-    return vector<T>();
-}
+//vector<T> getFinalPath(ISearchable<T>* searchable) {
+//    return vector<T>();
+//}
 int getNumberOfNodes(){
     return this->numberOfNodes;
 }

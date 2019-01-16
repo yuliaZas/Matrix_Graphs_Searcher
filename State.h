@@ -13,19 +13,30 @@ private:
     T state;
     double cost;
     double pathCost;
+    // for A*
+    double priority;
     State<T> *prevState;
 
 public:
-//    bool operator <(const State<T>  &s)const {
-//        return this->cost > s->cost;
-//    }
+
     bool equals(State s);
     State<T>(){}
 
     State<T>(T state, double cost) {
         this->state = state;
         this->cost = cost;
+        this->priority = 0;
         this->prevState = NULL;
+    }
+
+
+    double getPriority() const{
+        return priority;
+    }
+
+
+    void setPriority(double priority) {
+        State::priority = priority;
     }
 
     void setPrev(State* prev) {
@@ -59,6 +70,14 @@ class CMPstates{
 public:
     bool operator()(const State<T>* s1,const State<T>* s2 )const{
         return s1->getCost() > s2->getCost();
+    }
+};
+
+template<class T>
+class CMPhuristics{
+public:
+    bool operator()(const State<T>* s1,const State<T>* s2 )const{
+        return s1->getPriority() > s2->getPriority();
     }
 };
 

@@ -7,6 +7,8 @@
 #include "matrixMaze.h"
 #include "Searcher.h"
 #include "MatrixInterpreter.h"
+#include "Astar.h"
+#include "BestFS.h"
 using namespace std;
 int main(){
     MatrixInterpreter mi;
@@ -29,5 +31,10 @@ int main(){
     pq.push(s1);
     pq.push(s2);
      */
+    matrixMaze maze(mat);
+    Astar<pair<int,int>> star;
+    star.search(&maze);
+    BestFS<pair<int, int>> best;
+    best.search(&maze);
     return  0;
 }

@@ -18,6 +18,7 @@ public:
     virtual std::vector<State<T>*> getFinalPath() = 0;
     virtual int getFinalPathCost() = 0;
     virtual bool pathIsBetter(State<T>* currentState, State<T>* maybeNewPrev)= 0;
+    virtual int huristics(State<T>* currentState, State<T>* goalState) = 0;
 };
 
 

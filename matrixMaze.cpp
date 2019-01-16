@@ -103,4 +103,8 @@ int matrixMaze::getFinalPathCost() {
 bool matrixMaze::pathIsBetter(State<std::pair<int, int>>* currentState, State<std::pair<int, int>>* maybeNewPrev) {
     return currentState->getPathCost() > maybeNewPrev->getPathCost() + currentState->getCost();
 }
+// calculate the huristics value for A* algo
+int matrixMaze::huristics(State<pair<int,int>>* currentState, State<pair<int,int>>* goalState){
+    return abs(currentState->getState().first - goalState->getState().first) + abs(currentState->getState().second - goalState->getState().second);
+}
 

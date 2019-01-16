@@ -11,7 +11,7 @@
 class MyTestClientHandler : public ClientHandler {
 private:
     //Solver solver;
-    CacheManager mc;
+    CacheManager* mc;
 
 public:
     void handleClient(int stream1) override;
